@@ -22,10 +22,10 @@ def root():
     for product in products :
         product.days = (product.expiry - datetime.now()).days
     return render_template("landing.html" , products=products)
-@core.route("/product-view")
+@core.route("/product-view/")
 def product():
     return render_template("product-view.html")
-@core.route("/logout")
+@core.route("/logout/")
 def logout():
     session.clear()
     return redirect('/')
