@@ -21,15 +21,21 @@
 
       <form class="nav-button">
         <input type="text" id = "query">
-        <input type="submit" id = "search"value = "Search">
+        <input type="submit" id = "search" value = "Search"> 
       </form>
       <div class="feilds">
         {% if not session["user_id"] %}
           <button onclick="window.location='/login/'">Login</button>
           <button onclick="window.location='/register/'">Sign Up</button>
         {% else %}
+          {% if session["type"]  == "seller" %}
+          <button onclick="window.location='/dashboard/'">Dashboard</button>  
+          {% endif %}        
           <button onclick="window.location='/logout/'">Logout</button>
+
         {% endif %}
+
+
       </div>
     </div>
     <div class="categories">
