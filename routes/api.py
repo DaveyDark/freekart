@@ -89,14 +89,14 @@ def login():
     #Fetch data from database 
     seller = Seller.query.filter_by(email=email).first()
     #Check password
-    if seller and bcrypt.checkpw(password.encode('utf-8'), seller.password.encode('utf-8')):
+    if seller and bcrypt.checkpw(password.encode('utf-8'), seller.password):
         session['user_id'] = seller.id
         session['type'] = 'seller'
         return 'Seller Logged In', 200
 
     customer = Customer.query.filter_by(email=email).first()
 
-    if customer and bcrypt.checkpw(password.encode('utf-8'), customer.password.encode('utf-8')):
+    if customer and bcrypt.checkpw(password.encode('utf-8'), customer.password):
         session['user_id'] = customer.id
         session['type'] = 'customer'
         return 'Customer Logged In', 200
