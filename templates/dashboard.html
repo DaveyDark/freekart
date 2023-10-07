@@ -20,43 +20,27 @@
                     <th>Product Name</th>
                     <th>MRP</th>
                     <th>Expiry</th>
+                    <th>Quantity</th>
                     <th>Category</th>
-                    <th>Category</th>
-                    <th>Column 6</th>
-                    <th>Edit</th>
+                    <th>Actions</th>
                 </tr>
+                {% for product in seller.products %}
                 <tr>
-                    <td>Random</td>
-                    <td>Data</td>
-                    <td>123</td>
-                    <td>ABC</td>
-                    <td>Foo</td>
-                    <td>Bar</td>
-                    <td><button>Edit</button></td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.price }}</td>
+                    <td>{{ product.expiry }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>
+                      <button onlick="window.location = '/dashboard/edit/{{ product.id }}'">Edit</button>
+                      <button onlick="window.location = '/dashboard/delete/{{ product.id }}'">Edit</button>
+                    </td>
                 </tr>
-                <tr>
-                    <td>456</td>
-                    <td>Test</td>
-                    <td>Random</td>
-                    <td>Data</td>
-                    <td>789</td>
-                    <td>ABC</td>
-                    <td><button>Edit</button></td>
-                </tr>
-                <tr>
-                    <td>Bar</td>
-                    <td>Xyz</td>
-                    <td>456</td>
-                    <td>Test</td>
-                    <td>Random</td>
-                    <td>Data</td>
-                    <td><button>Edit</button></td>
-                </tr>
+                {% endfor %}
             </table>         
-          
         </div>
         <div class="add">
-            <button id = 'add'>
+            <button id = 'add' onclick="window.location = '/dashboard/add'">
                 Add A New Product
             </button>
         </div>
