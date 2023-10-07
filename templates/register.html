@@ -1,8 +1,17 @@
 {% extends "base.html" %}
 
+{% block head %}
+  <link rel="stylesheet" href="{{
+      url_for('static', filename = 'css/add.css')
+  }}">
+{% endblock %}
+
 {% block content %}
-<button id="locationButton">Get Location</button>
-<form id="customerRegister">
+<div class="container d-flex flex-column">
+<button class="mx-auto" id="locationButton">Get Location</button>
+<div class="row">
+<form id="customerRegister" class="col-6 m-auto">
+  <h1>Customer</h1>
   <input type="text" id="name" name="name" placeholder="Name"/>
   <input type="email" id="email" name="email" placeholder="Email Address"/>
   <input type="text" id="address" name="address" placeholder="Address"/>
@@ -13,7 +22,8 @@
   <input type="password-confirm" id="password-confirm" name="passwordConfirm" placeholder="Confirm Password"/>
   <input type="submit" id="submit" value="Register Customer"/>
 </form>
-<form id="sellerRegister">
+<form id="sellerRegister" class="col-6 m-auto">
+  <h1>Seller</h1>
   <input type="text" id="name" name="name" placeholder="Name"/>
   <input type="text" id="shop-name" name="shop_name" placeholder="Shop Name"/>
   <input type="email" id="email" name="email" placeholder="Email Address"/>
@@ -26,6 +36,8 @@
   <input type="password-confirm" id="password-confirm" name="passwordConfirm" placeholder="Confirm Password"/>
   <input type="submit" id="submit" value="Register Seller"/>
 </form>
+</div>
+</div>
 {% endblock %}
 
 {% block footer %}

@@ -7,7 +7,7 @@
 
 
 html{
-    background-color: var(--white)
+    background-color: var(--white);
 }
 
 *{
@@ -16,6 +16,9 @@ html{
     border: none;
     outline: none;
 
+}
+h1{
+  color: var(--primary);
 }
 body{
     display: flex;
