@@ -5,6 +5,9 @@ from models import Customer, Product, Order, Seller, db
 import bcrypt
 import os
 import env
+import pytz
+
+default_timezone = pytz.timezone('Asia/Kolkata')
 
 api = Blueprint('api', __name__)
 
