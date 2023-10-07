@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% block head %}
+
+<link rel="stylesheet" href="{{
+    url_for('static', filename = 'css/dashboard.css')
+}}">
+
+{% endblock %}
+
+{% block content %}
+
+<inventory>
+    <div class="display">
+        <div class="heading">
+   Inventory
+        </div>
+        <div class="products">
+            <table>
+                <tr>
+                    <th>Product Name</th>
+                    <th>MRP</th>
+                    <th>Expiry</th>
+                    <th>Category</th>
+                    <th>Category</th>
+                    <th>Column 6</th>
+                    <th>Edit</th>
+                </tr>
+                <tr>
+                    <td>Random</td>
+                    <td>Data</td>
+                    <td>123</td>
+                    <td>ABC</td>
+                    <td>Foo</td>
+                    <td>Bar</td>
+                    <td><button>Edit</button></td>
+                </tr>
+                <tr>
+                    <td>456</td>
+                    <td>Test</td>
+                    <td>Random</td>
+                    <td>Data</td>
+                    <td>789</td>
+                    <td>ABC</td>
+                    <td><button>Edit</button></td>
+                </tr>
+                <tr>
+                    <td>Bar</td>
+                    <td>Xyz</td>
+                    <td>456</td>
+                    <td>Test</td>
+                    <td>Random</td>
+                    <td>Data</td>
+                    <td><button>Edit</button></td>
+                </tr>
+            </table>         
+          
+        </div>
+        <div class="add">
+            <button id = 'add'>
+                Add A New Product
+            </button>
+        </div>
+    </div>
+    <div class="display">
+        <div class="heading">
+          Orders
+        </div>
+        <div class="products">
+           
+            
+    <table>
+        <tr>
+            <th>Product Name</th>
+            <th>MRP</th>
+            <th>Expiry</th>
+            <th>Category</th>
+            <th>Category</th>
+            <th>Column 6</th>
+            <th>Action</th>
+        </tr>
+        <tr>
+            <td>Random</td>
+            <td>Data</td>
+            <td>123</td>
+            <td>ABC</td>
+            <td>Foo</td>
+            <td>Bar</td>
+            <td class="action-buttons">
+                <button class="accept-btn">Accept</button>
+                <button class="refuse-btn">Refuse</button>
+            </td>
+        </tr>
+        <tr>
+            <td>456</td>
+            <td>Test</td>
+            <td>Random</td>
+            <td>Data</td>
+            <td>789</td>
+            <td>ABC</td>
+            <td class="action-buttons">
+                <button class="accept-btn">Accept</button>
+                <button class="refuse-btn">Refuse</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Bar</td>
+            <td>Xyz</td>
+            <td>456</td>
+            <td>Test</td>
+            <td>Random</td>
+            <td>Data</td>
+            <td class="action-buttons">
+                <button class="accept-btn">Accept</button>
+                <button class="refuse-btn">Refuse</button>
+            </td>
+        </tr>
+    </table> 
+          
+        </div>
+      </div>
+    <div class="display">
+        <div class="heading">
+          Past Orders
+        </div>
+        <div class="products">
+           
+            <table>
+                <tr>
+                    <th>Product Name</th>
+                    <th>MRP</th>
+                    <th>Expiry</th>
+                    <th>Category</th>
+                    <th>Category</th>
+                    <th>Column 6</th>
+                   
+                </tr>
+                <tr>
+                    <td>Random</td>
+                    <td>Data</td>
+                    <td>123</td>
+                    <td>ABC</td>
+                    <td>Foo</td>
+                    <td>Bar</td>
+                   
+                </tr>
+                <tr>
+                    <td>456</td>
+                    <td>Test</td>
+                    <td>Random</td>
+                    <td>Data</td>
+                    <td>789</td>
+                    <td>ABC</td>
+                  
+                </tr>
+                <tr>
+                    <td>Bar</td>
+                    <td>Xyz</td>
+                    <td>456</td>
+                    <td>Test</td>
+                    <td>Random</td>
+                    <td>Data</td>
+                  
+                </tr>
+            </table> 
+          
+        </div>
+      </div>
+</inventory>
+
+
+
+
+{% endblock %}

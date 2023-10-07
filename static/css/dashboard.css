@@ -1,0 +1,49 @@
+.categories{
+    display: none;
+}
+inventory{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.products{
+    display: flex;
+}
+table {
+    font-family: var(--content-font);
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid var(--primary);
+    text-align: left;
+    padding: 12px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+@media (max-width: 600px) {
+    th, td {
+        padding: 8px;
+    }
+}
+#add{
+    width: 50em;
+}
+.accept-btn {
+    background-color: var(--primary);
+    color: white;
+}
+
+.refuse-btn {
+    background-color: #d3625a;
+    color: white;
+}

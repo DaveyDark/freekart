@@ -29,3 +29,9 @@ def product():
 def logout():
     session.clear()
     return redirect('/')
+@core.route("/dashboard/")
+def dashboard():
+    return render_template("dashboard.html")
+@core.route("/add/")
+def add():
+    return render_template("add.html")
