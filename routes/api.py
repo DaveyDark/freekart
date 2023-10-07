@@ -107,7 +107,7 @@ def login():
 @api.route('/products/add', methods=['POST'])
 def add_product():
     #Check if all the info is present 
-    required_keys = {'expiry', 'name', 'quantity', 'price'}
+    required_keys = {'expiry', 'name', 'quantity', 'price', 'category'}
     if not required_keys.issubset(request.form.keys()):
         return 'Bad Request: Missing required fields', 400
     #Check if the user is logged in
@@ -130,6 +130,7 @@ def add_product():
         expiry= datetime.strptime(request.form['expiry'], "%Y-%m-%d"),
         name=request.form['name'],
         quantity=request.form['quantity'],
+        category=request.form['category'],
         price=request.form['price'],
         seller_id=session['user_id']
     )

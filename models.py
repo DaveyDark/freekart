@@ -40,13 +40,15 @@ class Product(db.Model):
     name = db.Column(db.String(50), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
+    category = db.Column(db.String(25), nullable=False)
     seller_id = db.Column(db.Integer, db.ForeignKey('sellers.id'), nullable=False)
     #Constructor
-    def __init__(self, expiry, name, quantity, price, seller_id):
+    def __init__(self, expiry, name, quantity, price, category, seller_id):
         self.expiry = expiry
         self.name = name
         self.quantity = quantity
         self.price = price
+        self.category = category
         self.seller_id = seller_id
 
     def __repr__(self):
