@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
+{% block head %}
+  <link rel="stylesheet" href="{{
+      url_for('static', filename = 'css/add.css')
+  }}">
+{% endblock %}
+
 {% block content %}
-<form id="loginForm">
+<form id="loginForm" class="container flex-column w-25 d-flex align-items-center justify-content-center">
+  <h1>Login</h1>
   <input type="email" id="email" name="email" placeholder="Email Address"/>
   <input type="password" id="password" name="password" placeholder="Password"/>
   <input type="submit" id="submit" value="login"/>
