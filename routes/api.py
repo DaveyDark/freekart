@@ -139,7 +139,7 @@ def add_product():
     db.session.commit()
 
     #Save file 
-    filename = os.path.join(env.UPLOAD_FOLDER, f'{product.id}{file_extension}')
+    filename = os.path.join('/' + env.UPLOAD_FOLDER, f'{product.id}{file_extension}')
     try:
         file.save(filename)
     except Exception as e:
