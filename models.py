@@ -11,12 +11,13 @@ class Seller(db.Model):
     long = db.Column(db.Float, nullable=False)
     address = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(25), nullable=False)
-    email = db.Column(db.String(50), nullable=False)
-    gstin = db.Column(db.String(25), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    gstin = db.Column(db.String(25), nullable=False, unique=True)
+    password = db.Column(db.String(100), nullable=False)
 
     products = db.relationship('Product', backref='seller', lazy=True)
 
-    def __init__(self, shop_name, name, lat, long, address, phone, email, gstin):
+    def __init__(self, shop_name, name, lat, long, address, phone, email, gstin, password):
         self.shop_name = shop_name
         self.name = name
         self.lat = lat
@@ -25,6 +26,7 @@ class Seller(db.Model):
         self.phone = phone
         self.email = email
         self.gstin = gstin
+        self.password = password
 
     def __repr__(self):
         return f"<Seller {self.shop_name}>"
@@ -58,17 +60,18 @@ class Customer(db.Model):
     long = db.Column(db.Float, nullable=False)
     address = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(25), nullable=False)
-    email = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(50), nullable=False, unique=True)
+    password = db.Column(db.String(100), nullable=False)
 
     orders = db.relationship('Order', backref='customer', lazy=True)
 
-    def __init__(self, name, lat, long, address, phone, email):
+    def __init__(self, name, lat, long, address, phone, email, password):
         self.name = name
         self.lat = lat
         self.long = long
         self.address = address
         self.phone = phone
-        self.email = email
+        self.password = password
 
     def __repr__(self):
         return f"<Customer {self.name}>"
