@@ -145,7 +145,7 @@ def add_product():
     except Exception as e:
         return f'Error uploading file: {str(e)}', 500
 
-    product.pic = filename
+    product.pic = '/' + filename
     db.session.add(product)
     db.session.commit()
 
