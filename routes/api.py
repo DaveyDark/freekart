@@ -168,3 +168,29 @@ def add_order():
     db.session.commit()
 
     return 'Order Created', 201
+
+def Calc_effective_price(MRP, time):
+    
+    if time.days > 21:
+        price = MRP * 0.90
+    elif time.days > 14:
+        price = MRP *0.75
+    elif time.days > 7:
+        price = MRP*0.50
+    else: 
+        if time.days == 7:
+            price = MRP*75
+        elif time.days == 6:
+            price = MRP*80
+        elif time.days == 5:
+            price = MRP*84
+        elif time.days == 4:
+            price = MRP*87
+        elif time.days == 3:
+            price = MRP*89
+        elif time.days == 2:
+            price = MRP*90
+        elif time.days == 1:
+            price = MRP*91
+
+    return price
