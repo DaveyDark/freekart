@@ -1,37 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for("static", filename = 'css/landing.css')}}">
-    {% block header %}
-    {% endblock %}
-</head>
-<body>
-    
-    {% block content %}
+{% extends "base.html" %}
 
-    <div class="nav-bar">
-        <div class="logo">
-            <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200">
-        </div>
-       
-       
-
-        <form class="nav-button">
-            <input type="text" id = "query">
-            <input type="submit" id = "search"value = "Search">
-        </form>
-        <div class="feilds">
-            <button>Login</button>
-            <button>Sign Up</button>
-
-        </div>
+{% block content %}
+<div class="display">
+  <div class="heading">
+      Grab These Products Now !
+  </div>
+  <div class="products">
+    <div class="product-banner">
+      <p>{{15}} Days To Expire</p>
+      <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+      <name>Product Name</name>
+      <p>Price: $19.99</p>
+      <button>
+        Buy Now
+      </button>
     </div>
+<<<<<<< HEAD
     <!-- <hr> -->
     <div class="categories">
         <button>Groceries</button>
@@ -165,3 +149,8 @@
     {% endblock %}
 </footer>
 </html>
+=======
+  </div>
+</div>
+{% endblock %}
+>>>>>>> 0aba50cb8ababbb7e7546bf5420f6fc349a424a4
