@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename = "css/product-view.css")}}">
+{% endblock %}
+{% block content %}
+<product-view>
+        <image>
+            <img height="350" src="{{ url_for('static', filename = "img/logo.png")}}" alt="">
+        </image>
+        <prod-details>
+            <name>
+                Product Name
+            </name>
+            <price>
+                $199.99
+            </price>
+            <expiry>
+                25 Days To Expire
+            </expiry>
+            <div class="quantity-control">
+                <div class="icon" id="decrease">-  </div>
+                <div id="quantity">1</div>
+                <div class="icon" id="increase">+</div>
+            </div>
+            <button>
+                Buy Now
+            </button>
+        </prod-details>
+
+</product-view>
+
+<script>
+    // Get quantity element
+    var quantityElement = document.getElementById('quantity');
+
+    // Get increase and decrease icons
+    var increaseIcon = document.getElementById('increase');
+    var decreaseIcon = document.getElementById('decrease');
+
+    // Initial quantity value
+    var quantity = 1;
+
+    // Function to update quantity display
+    function updateQuantity() {
+        quantityElement.textContent = quantity;
+    }
+
+    // Event listener for increase icon
+    increaseIcon.addEventListener('click', function() {
+        quantity++;
+        updateQuantity();
+    });
+
+    // Event listener for decrease icon
+    decreaseIcon.addEventListener('click', function() {
+        if (quantity > 1) {
+            quantity--;
+            updateQuantity();
+        }
+    });
+</script>
+
+
+{% endblock %}

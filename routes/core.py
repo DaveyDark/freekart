@@ -24,7 +24,7 @@ def root():
     return render_template("landing.html" , products=products)
 @core.route("/product-view")
 def product():
-    return render_template("product-view")
+    return render_template("product-view.html")
 @core.route("/logout")
 def logout():
     session.clear()

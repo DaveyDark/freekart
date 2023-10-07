@@ -1,0 +1,71 @@
+*{
+    user-select: none;
+}
+.categories{
+    display: none;
+}
+
+footer{
+    display: none;
+}
+product-view{
+    height: auto;
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+    display: flex;
+    gap: 1em;
+    
+    overflow: hidden;
+}
+
+prod-details{
+    width: 60em;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    gap: 1em;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+name{
+    font-family: var(--content-font);
+    font-weight: 700;
+    font-size: 40pt;
+    color: var(--primary);
+}
+price{
+    color: var(--primary);
+    font-size: 24px;
+    font-family: var(--content-font);
+
+}
+expiry{
+
+    background-color: var(--primary);
+    color: var(--white);
+    font-size: 28px;
+    font-family: var(--content-font);
+    padding: 0.2em 0.2em;
+    border-radius: 10px;
+}
+.quantity-control {
+    font-family: var(--content-font);
+
+    display: flex;
+    align-items: center;
+    font-size: 20pt;
+    color: var(--primary);
+
+}
+.icon{
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 0.5em;
+    border-radius: 100%;
+    font-weight: 700;
+}
+
+.icon {
+    cursor: pointer;
+    margin: 0 8px;
+}
