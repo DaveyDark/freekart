@@ -155,3 +155,9 @@ height: 1em;
 .product-banner button{
 height: 1.5em;    
 }
+
+footer{
+    height: 10em;
+    background-color: var(--primary);
+    border-radius: 10px;
+}

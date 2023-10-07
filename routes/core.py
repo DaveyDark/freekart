@@ -4,4 +4,4 @@ core = Blueprint('core', __name__)
 
 @core.route("/register/")
 def login():
-    return render_template("register.html")
+    return render_template("landing.html")
