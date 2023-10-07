@@ -46,6 +46,14 @@ def dashboard():
 def add():
     return render_template("add.html")
 
+@core.route("/dashboard/edit/<int:id>")
+def edit_product(id):
+    seller = auth_seller()
+    if not seller:
+        return '',404
+    product = Product.query.get(id)
+    return render_template("edit.html", seller=seller, product=product)
+
 def auth_seller():
     if 'user_id' not in session or 'type' not in session or session['type'] != 'seller':
         return None
