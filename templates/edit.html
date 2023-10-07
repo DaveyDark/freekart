@@ -8,7 +8,7 @@
 {% block content %}
     <div class="display">
         <div class="heading">
-           Add A New Product
+           Edit Product
         </div>
         <div class="products">
           <form action="/submit" id="addForm" enctype="multipart/form-data">
@@ -16,19 +16,9 @@
               <input type="text" value="{{ product.name }}" id="productName" name="name" required><br>
               <label for="mrp">MRP:</label>
       <input type="number" id="mrp" value="{{ product.price }}" name="price" required><br>
-              <label for="expiry">Expiry Date:</label>
-      <input type="date" id="expiry" value="{{ product.expiry }}" name="expiry" required><br>
               <label for="quantity">Quantity</label>
       <input type="number" id="quantity" value="{{product.quantity}}" name="quantity" required><br>
-              <label for="category">Category:</label>
-              <select id="category" name="category" required>
-                  <option value="electronics">Electronics</option>
-                  <option value="clothing">Clothing</option>
-                  <option value="grocery">Grocery</option>
-              </select><br>
-              <label for="pic">Product Image:</label>
-              <input type="file" id="pic" name="pic" accept="image/*" required><br>
-              <input type="submit" value="Add A New Product">
+              <input type="submit" value="Save">
           </form>
         </div>
     </div>

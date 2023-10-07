@@ -32,8 +32,8 @@
                     <td>{{ product.quantity }}</td>
                     <td>{{ product.category }}</td>
                     <td>
-                      <button onlick="window.location = '/dashboard/edit/{{ product.id }}'">Edit</button>
-                      <button onlick="window.location = '/dashboard/delete/{{ product.id }}'">Edit</button>
+                      <button onclick="window.location = '/dashboard/edit/{{ product.id }}'">Edit</button>
+                      <button onclick="window.location = '/dashboard/delete/{{ product.id }}'">Delete</button>
                     </td>
                 </tr>
                 {% endfor %}

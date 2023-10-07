@@ -54,6 +54,16 @@ def edit_product(id):
     product = Product.query.get(id)
     return render_template("edit.html", seller=seller, product=product)
 
+@core.route("/dashboard/delete/<int:id>")
+def delete_product(id):
+    seller = auth_seller()
+    if not seller:
+        return '',404
+    product = Product.query.get(id)
+    db.session.delete(product)
+    db.session.commit()
+    return redirect(url_for('core.dashboard'))
+
 def auth_seller():
     if 'user_id' not in session or 'type' not in session or session['type'] != 'seller':
         return None
