@@ -5,7 +5,7 @@ from models import db
 
 app = Flask(__name__)
 app.secret_key = "apex_secret"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///utype.db"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///freekart.db"
 
 db.init_app(app)
 
