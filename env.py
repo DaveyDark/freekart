@@ -1,0 +1,2 @@
+SECRET_KEY = 'RANDOM'
+UPLOAD_FOLDER = 'uploads'

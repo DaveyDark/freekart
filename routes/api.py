@@ -1,7 +1,9 @@
 from flask import Blueprint, request, session
 from sqlalchemy import or_
-from models import Customer, Seller, db
+from models import Customer, Product, Seller, db
 import bcrypt
+import os
+import env
 
 api = Blueprint('api', __name__)
 
@@ -86,11 +88,42 @@ def login():
 
     return 'Login Failed', 401
 
-@api.route('/products/add')
+@api.route('/products/add', methods=['POST'])
 def add_product():
     required_keys = {'expiry', 'name', 'quantity', 'price'}
     if not required_keys.issubset(request.form.keys()):
-        return 'Bad Request', 400
-    if not 'pic' in request.files:
-        return 'No pic attached', 400
-    return ''
+        return 'Bad Request: Missing required fields', 400
+
+    if 'user_id' not in session or 'type' not in session or session['type'] != 'seller':
+        return 'Unauthorized', 401
+
+    if 'pic' not in request.files:
+        return 'No picture attached', 400
+
+    file = request.files['pic']
+    if file.filename == '':
+        return 'No selected file', 400
+
+    allowed_extensions = {'.jpg', '.jpeg', '.png', '.gif'}
+    file_extension = os.path.splitext(file.filename)[1].lower()
+    if file_extension not in allowed_extensions:
+        return 'Invalid file extension. Allowed extensions are .jpg, .jpeg, .png, .gif', 400
+
+    product = Product(
+        expiry=request.form['expiry'],
+        name=request.form['name'],
+        quantity=request.form['quantity'],
+        price=request.form['price'],
+        seller_id=session['user_id']
+    )
+
+    filename = os.path.join(env.UPLOAD_FOLDER, f'{product.id}{file_extension}')
+    try:
+        file.save(filename)
+    except Exception as e:
+        return f'Error uploading file: {str(e)}', 500
+
+    db.session.add(product)
+    db.session.commit()
+
+    return 'Product created', 201

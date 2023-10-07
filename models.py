@@ -35,15 +35,14 @@ class Product(db.Model):
     __tablename__ = "products"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     expiry = db.Column(db.DateTime, nullable=False)
-    pic = db.Column(db.String(50), nullable=False)
+    pic = db.Column(db.String(50), nullable=False, default="")
     name = db.Column(db.String(50), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     seller_id = db.Column(db.Integer, db.ForeignKey('sellers.id'), nullable=False)
 
-    def __init__(self, expiry, pic, name, quantity, price, seller_id):
+    def __init__(self, expiry, name, quantity, price, seller_id):
         self.expiry = expiry
-        self.pic = pic
         self.name = name
         self.quantity = quantity
         self.price = price
