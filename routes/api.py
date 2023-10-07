@@ -1,6 +1,7 @@
+from datetime import datetime
 from flask import Blueprint, request, session
 from sqlalchemy import or_
-from models import Customer, Product, Seller, db
+from models import Customer, Product, Order, Seller, db
 import bcrypt
 import os
 import env
@@ -110,7 +111,7 @@ def add_product():
         return 'Invalid file extension. Allowed extensions are .jpg, .jpeg, .png, .gif', 400
 
     product = Product(
-        expiry=request.form['expiry'],
+        expiry= datetime.strptime(request.form['expiry'], "%Y-%m-%d"),
         name=request.form['name'],
         quantity=request.form['quantity'],
         price=request.form['price'],
@@ -127,3 +128,25 @@ def add_product():
     db.session.commit()
 
     return 'Product created', 201
+
+@api.route('/orders/add', methods=["POST"])
+def add_order():
+    required_keys = {'quantity', 'amount', 'product_id'}
+    if not required_keys.issubset(request.form.keys()):
+        return 'Bad Request: Missing required fields', 400
+
+    if 'user_id' not in session or 'type' not in session or session['type'] != 'customer':
+        return 'Unauthorized', 401
+
+    order = Order(
+        quantity=request.form['quantity'],
+        amount=request.form['amount'],
+        timestamp=datetime.now(),
+        product_id=request.form['product_id'],
+        customer_id=session['user_id']
+    )
+
+    db.session.add(order)
+    db.session.commit()
+
+    return 'Order Created', 201
