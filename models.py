@@ -71,6 +71,7 @@ class Customer(db.Model):
         self.long = long
         self.address = address
         self.phone = phone
+        self.email = email
         self.password = password
 
     def __repr__(self):
