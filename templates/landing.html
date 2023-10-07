@@ -10,7 +10,7 @@
     
     <div class="product-banner">
       <p>{{product.days}} Days To Expire</p>
-      <img src="{{ url_for("static", filename = '{{product.pic}}')}}" height="120" width="200"" alt="Product Image">
+      <img src="{{product.pic}}" height="120" width="200"" alt="Product Image">
       <name>{{ product.name }}</name>
       <p>Price: {{product.price}}</p>
       <button>

@@ -134,6 +134,10 @@ def add_product():
         price=request.form['price'],
         seller_id=session['user_id']
     )
+
+    db.session.add(product)
+    db.session.commit()
+
     #Save file 
     filename = os.path.join(env.UPLOAD_FOLDER, f'{product.id}{file_extension}')
     try:
@@ -141,6 +145,7 @@ def add_product():
     except Exception as e:
         return f'Error uploading file: {str(e)}', 500
 
+    product.pic = filename
     db.session.add(product)
     db.session.commit()
 
