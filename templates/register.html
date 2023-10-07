@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+<button id="locationButton">Get Location</button>
 <form id="customerRegister">
   <input type="text" id="name" name="name" placeholder="Name"/>
   <input type="email" id="email" name="email" placeholder="Email Address"/>
   <input type="text" id="address" name="address" placeholder="Address"/>
   <input type="number" id="phone" name="phone" placeholder="Phone Number"/>
-  <input type="text" id="lat" name="lat" placeholder="Latitude" readonly/>
-  <input type="text" id="long" name="long" placeholder="Longitude" readonly/>
+  <input type="text" class="lat" name="lat" placeholder="Latitude" readonly/>
+  <input type="text" class="long" name="long" placeholder="Longitude" readonly/>
   <input type="password" id="password" name="password" placeholder="Password"/>
   <input type="password-confirm" id="password-confirm" name="passwordConfirm" placeholder="Confirm Password"/>
   <input type="submit" id="submit" value="Register Customer"/>
@@ -18,9 +19,9 @@
   <input type="email" id="email" name="email" placeholder="Email Address"/>
   <input type="text" id="address" name="address" placeholder="Address"/>
   <input type="number" id="phone" name="phone" placeholder="Phone Number"/>
-  <input type="text" id="lat" name="lat" placeholder="Latitude" readonly/>
-  <input type="text" id="long" name="long" placeholder="Longitude" readonly/>
-  <input type="text" id="gstin" name="gstin" placeholder="GSTIN Number" readonly/>
+  <input type="text" class="lat" name="lat" placeholder="Latitude" readonly/>
+  <input type="text" class="long" name="long" placeholder="Longitude" readonly/>
+  <input type="text" id="gstin" name="gstin" placeholder="GSTIN Number"/>
   <input type="password" id="password" name="password" placeholder="Password"/>
   <input type="password-confirm" id="password-confirm" name="passwordConfirm" placeholder="Confirm Password"/>
   <input type="submit" id="submit" value="Register Seller"/>

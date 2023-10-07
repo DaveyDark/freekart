@@ -31,8 +31,8 @@ def register_seller():
     #Adding to the database
     seller = Seller(
             shop_name=request.form.get('shop_name'),
-            lat=request.form.get('lat'),
-            long=request.form.get('long'),
+            lat=float(request.form.get('lat')),
+            long=float(request.form.get('long')),
             address=request.form.get('address'),
             phone=request.form.get('phone'),
             email=request.form.get('email'),
@@ -40,7 +40,7 @@ def register_seller():
             name=request.form.get('name'),
             password=hashed_password
             )
-    db.session.add(Seller)
+    db.session.add(seller)
     db.session.commit()
     session['user_id'] = seller.id
     session['type'] = 'seller'
@@ -66,8 +66,8 @@ def register_customer():
     #Adding to the database
     new_customer = Customer(
         name=request.form.get('name'),
-        lat=request.form.get('lat'),
-        long=request.form.get('long'),
+        lat=float(request.form.get('lat')),
+        long=float(request.form.get('long')),
         address=request.form.get('address'),
         phone=request.form.get('phone'),
         email=request.form.get('email'),
