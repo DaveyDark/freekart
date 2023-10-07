@@ -3,7 +3,7 @@ from routes.api import api
 from routes.core import core
 from models import db
 import env
-
+#Initialising the app
 app = Flask(__name__)
 app.secret_key = env.SECRET_KEY
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///freekart.db"

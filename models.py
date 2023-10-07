@@ -1,8 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
-
+#Seller Table to store info regarding sellers
 class Seller(db.Model):
+    #Columns to store seller info 
     __tablename__ = "sellers"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     shop_name = db.Column(db.String(50), nullable=False)
@@ -16,7 +17,7 @@ class Seller(db.Model):
     password = db.Column(db.String(100), nullable=False)
 
     products = db.relationship('Product', backref='seller', lazy=True)
-
+    #Constructor
     def __init__(self, shop_name, name, lat, long, address, phone, email, gstin, password):
         self.shop_name = shop_name
         self.name = name
@@ -30,7 +31,7 @@ class Seller(db.Model):
 
     def __repr__(self):
         return f"<Seller {self.shop_name}>"
-
+#Product table to store products that are put on sale by the seller
 class Product(db.Model):
     __tablename__ = "products"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -40,7 +41,7 @@ class Product(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Float, nullable=False)
     seller_id = db.Column(db.Integer, db.ForeignKey('sellers.id'), nullable=False)
-
+    #Constructor
     def __init__(self, expiry, name, quantity, price, seller_id):
         self.expiry = expiry
         self.name = name
@@ -50,7 +51,7 @@ class Product(db.Model):
 
     def __repr__(self):
         return f"<Product {self.name}>"
-
+#Customer table to store user info for login 
 class Customer(db.Model):
     __tablename__ = "customers"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -63,7 +64,7 @@ class Customer(db.Model):
     password = db.Column(db.String(100), nullable=False)
 
     orders = db.relationship('Order', backref='customer', lazy=True)
-
+    #Constructor
     def __init__(self, name, lat, long, address, phone, email, password):
         self.name = name
         self.lat = lat
@@ -75,7 +76,7 @@ class Customer(db.Model):
 
     def __repr__(self):
         return f"<Customer {self.name}>"
-
+#Table to keep track of orders by a specefic user
 class Order(db.Model):
     __tablename__ = "orders"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -84,7 +85,7 @@ class Order(db.Model):
     timestamp = db.Column(db.DateTime, nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
-
+    #Constructor
     def __init__(self, quantity, amount, timestamp, customer_id, product_id):
         self.quantity = quantity
         self.amount = amount

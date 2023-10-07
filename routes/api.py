@@ -6,24 +6,29 @@ import bcrypt
 import os
 import env
 import pytz
-
+#Initialisation
 default_timezone = pytz.timezone('Asia/Kolkata')
 
 api = Blueprint('api', __name__)
 
+#Seller registeration 
 @api.route('/register/seller', methods=['POST'])
 def register_seller():
+    #Check if all the necessity data has been entered
     required_keys = {'shop_name', 'lat', 'long', 'address', 'phone', 'email', 'gstin', 'name', 'password'}
     if not required_keys.issubset(request.form.keys()):
         return 'Bad Request', 400
+    #Request info from the db to check if data already in use
     customer = Customer.query.filter_by(email=request.form['email']).first()
     if customer:
         return 'Email already in use', 409
     seller = Seller.query.filter(or_(Seller.email == request.form['email'], Seller.gstin == request.form['gstin'])).first()
     if seller:
         return 'Seller already exists', 409
+    #Password encryption
     salt = bcrypt.gensalt()
     hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), salt)
+    #Adding to the database
     seller = Seller(
             shop_name=request.form.get('shop_name'),
             lat=request.form.get('lat'),
@@ -40,20 +45,24 @@ def register_seller():
     session['user_id'] = seller.id
     session['type'] = 'seller'
     return 'User Created',201
-
+#Registering customer 
 @api.route('/register/customer', methods=['POST'])
 def register_customer():
+    #Check if all input required is present
     required_keys = {'name', 'lat', 'long', 'address', 'phone', 'email', 'password'}
     if not required_keys.issubset(request.form.keys()):
         return 'Bad Request', 400
+    #Check whether seller has been registered before
     seller = Seller.query.filter_by(email=request.form['email']).first()
     if seller:
         return 'Email already in use', 409
     existing_customer = Customer.query.filter_by(email=request.form['email']).first()
     if existing_customer:
         return 'Customer already exists', 409
+    #Password encryption 
     salt = bcrypt.gensalt()
     hashed_password = bcrypt.hashpw(request.form['password'].encode('utf-8'), salt)
+    #Adding to the database
     new_customer = Customer(
         name=request.form.get('name'),
         lat=request.form.get('lat'),
@@ -67,17 +76,18 @@ def register_customer():
     db.session.commit()
     session['user_id'] = new_customer.id
     return 'Customer Created', 201
-
+#Login for seller as well as customer
 @api.route('/login', methods=['POST'])
 def login():
+    #Login using email 
     email = request.form.get('email')
     password = request.form.get('password')
-
+    #Check if not registered
     if not email or not password:
         return 'Bad Request', 400
-
+    #Fetch data from database 
     seller = Seller.query.filter_by(email=email).first()
-
+    #Check password
     if seller and bcrypt.checkpw(password.encode('utf-8'), seller.password.encode('utf-8')):
         session['user_id'] = seller.id
         session['type'] = 'seller'
@@ -92,12 +102,14 @@ def login():
 
     return 'Login Failed', 401
 
+#Seller can add product for sale 
 @api.route('/products/add', methods=['POST'])
 def add_product():
+    #Check if all the info is present 
     required_keys = {'expiry', 'name', 'quantity', 'price'}
     if not required_keys.issubset(request.form.keys()):
         return 'Bad Request: Missing required fields', 400
-
+    #Check if the user is logged in
     if 'user_id' not in session or 'type' not in session or session['type'] != 'seller':
         return 'Unauthorized', 401
 
@@ -112,7 +124,7 @@ def add_product():
     file_extension = os.path.splitext(file.filename)[1].lower()
     if file_extension not in allowed_extensions:
         return 'Invalid file extension. Allowed extensions are .jpg, .jpeg, .png, .gif', 400
-
+    #Add product to the database  
     product = Product(
         expiry= datetime.strptime(request.form['expiry'], "%Y-%m-%d"),
         name=request.form['name'],
@@ -120,7 +132,7 @@ def add_product():
         price=request.form['price'],
         seller_id=session['user_id']
     )
-
+    #Save file 
     filename = os.path.join(env.UPLOAD_FOLDER, f'{product.id}{file_extension}')
     try:
         file.save(filename)
@@ -131,16 +143,17 @@ def add_product():
     db.session.commit()
 
     return 'Product created', 201
-
+#Customer can add order to the their cart
 @api.route('/orders/add', methods=["POST"])
 def add_order():
+    #Check if all info is present 
     required_keys = {'quantity', 'amount', 'product_id'}
     if not required_keys.issubset(request.form.keys()):
         return 'Bad Request: Missing required fields', 400
-
+    #Check if user is logged in 
     if 'user_id' not in session or 'type' not in session or session['type'] != 'customer':
         return 'Unauthorized', 401
-
+    #Add order to the database 
     order = Order(
         quantity=request.form['quantity'],
         amount=request.form['amount'],
