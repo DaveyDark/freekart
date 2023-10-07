@@ -6,15 +6,18 @@
     Prices so cheap it feels like stealing
   </div>
   <div class="products">
+    {% for product in products %} 
+    
     <div class="product-banner">
-      <p>{{15}} Days To Expire</p>
-      <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
-      <name>Product Name</name>
-      <p>Price: $19.99</p>
+      <p>{{product.days}} Days To Expire</p>
+      <img src="{{ url_for("static", filename = '{{product.pic}}')}}" height="120" width="200"" alt="Product Image">
+      <name>{{ product.name }}</name>
+      <p>Price: {{product.price}}</p>
       <button>
         Buy Now
       </button>
     </div>
+    {% endfor %}
   </div>
 </div>
 {% endblock %}
