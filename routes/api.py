@@ -45,6 +45,7 @@ def register_seller():
     session['user_id'] = seller.id
     session['type'] = 'seller'
     return 'User Created',201
+
 #Registering customer 
 @api.route('/register/customer', methods=['POST'])
 def register_customer():
