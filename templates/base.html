@@ -1,10 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for("static", filename = 'css/global.css')}}">
     {% block head %}
     {% endblock %}
   </head>
   <body>
+    <div class="nav-bar">
+      <div class="logo">
+        <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200">
+      </div>
+
+      <form class="nav-button">
+        <input type="text" id = "query">
+        <input type="submit" id = "search"value = "Search">
+      </form>
+      <div class="feilds">
+        <button>Login</button>
+        <button>Sign Up</button>
+      </div>
+    </div>
+    <div class="categories">
+        <button>Groceries</button>
+        <button>Cosmetics & Skincare</button>
+        <button>Medications</button>
+        <button>Food Supplements</button>
+        <button>Beverages</button>
+        <button>Pet Food</button>
+        <button>Condiments & Sauces</button>
+        <button>Fitness Products</button>
+    </div>
     {% block content %}
     {% endblock %}
   </body>
