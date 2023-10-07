@@ -12,7 +12,10 @@
                 {{product.name}}
             </name>
             <price>
-                ${product.price}
+                <strike>MRP: ${{product.price}}</strike>
+            </price>
+            <price>
+                Discounted Price: ${{product.effective_price}}
             </price>
             <expiry>
                 {{product.days}} Days To Expire

@@ -175,27 +175,27 @@ def add_order():
     return 'Order Created', 201
 
 def Calc_effective_price(MRP, time):
-    
-    if time.days > 21:
-        price = MRP * 0.90
-    elif time.days > 14:
-        price = MRP *0.75
-    elif time.days > 7:
-        price = MRP*0.50
-    else: 
-        if time.days == 7:
-            price = MRP*75
-        elif time.days == 6:
-            price = MRP*80
-        elif time.days == 5:
-            price = MRP*84
-        elif time.days == 4:
-            price = MRP*87
-        elif time.days == 3:
-            price = MRP*89
-        elif time.days == 2:
-            price = MRP*90
-        elif time.days == 1:
-            price = MRP*91
+    if time > 21:
+        price = MRP * 0.90  # 10% discount
+    elif time > 14:
+        price = MRP * 0.75  # 25% discount
+    elif time > 7:
+        price = MRP * 0.50  # 50% discount
+    elif time == 7:
+        price = MRP * 0.25  # 25% discount
+    elif time == 6:
+        price = MRP * 0.20  # 80% discount
+    elif time == 5:
+        price = MRP * 0.16  # 84% discount
+    elif time == 4:
+        price = MRP * 0.13  # 87% discount
+    elif time == 3:
+        price = MRP * 0.11  # 89% discount
+    elif time == 2:
+        price = MRP * 0.10  # 90% discount
+    elif time == 1:
+        price = MRP * 0.9  # 91% discount
+    else:
+        price = MRP  
 
-    return price
+    return round(price,2)
