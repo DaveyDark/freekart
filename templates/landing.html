@@ -4,13 +4,158 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for("static", filename = 'css/landing.css')}}">
+    {% block header %}
+    {% endblock %}
 </head>
 <body>
+    
+    {% block content %}
+
+    <div class="nav-bar">
+        <div class="logo">
+            <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200">
+        </div>
+       
+       
+
+        <div class="nav-button">
+            <input type="text" id = "query">
+            <input type="submit" id = "search"value = "Search">
+        </div>
+        <div class="feilds">
+            <button>Login</button>
+            <button>Sign Up</button>
+
+        </div>
+    </div>
+    <!-- <hr> -->
+    <div class="categories">
+        <button>Groceries</button>
+        <button>Cosmetics & Skincare</button>
+        <button>Medications</button>
+        <button>Food Supplements</button>
+        <button>Beverages</button>
+        <button>Pet Food</button>
+        <button>Condiments & Sauces</button>
+        <button>Fitness Products</button>
 
 
-    <div class="nav-bar"></div>
+    </div>
+
+    <div class="display">
+        <div class="heading">
+            Grab These Products Now !
+        </div>
+        <div class="products">
+           
+           
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+            <div class="product-banner">
+                <p>{{15}} Days To Expire</p>
+                <img src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200"" alt="Product Image">
+                <name>Product Name</name>
+                <p>Price: $19.99</p>
+                <button>
+                    Buy Now
+                </button>
+                
+            </div>
+
+
+        </div>
+    </div>
+    {% endblock %}
+
 
 </body>
+<footer>
+    {% block footer %}
+    {% endblock %}
+</footer>
 </html>

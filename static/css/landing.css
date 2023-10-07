@@ -1,0 +1,157 @@
+:root{
+    --primary : #61997e;
+    --white : #eeeeee;
+    --content-font : 'Signika Negative'
+}
+
+
+
+html{
+    background-color: var(--white)
+}
+
+*{
+    margin: none;
+    padding: none;
+    border: none;
+    outline: none;
+
+}
+body{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+.nav-bar{
+    padding: 1em;
+    /* margin: 0 2em; */
+    height: auto;
+    gap: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border-bottom: 1px solid grey; */
+    flex-wrap: wrap;
+}
+.display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    height: auto;
+    border-radius: 10px;
+    border:1px solid var(--primary);
+}
+.heading{
+    font-family: var(--content-font);
+    font-size: 30pt;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+
+
+
+/* @media screen and (min-width: 500px) {
+.nav-bar{
+    justify-content: center;
+} */
+
+
+input{
+    border: 1px solid var(--primary);
+    height: 3em;
+    font-family: var(--content-font);
+    font-size: 12pt;
+    padding: 0 1em;
+    border-radius: 5px;
+}
+
+button{
+    cursor: pointer;
+    
+    background-color: var(--primary);
+    color: var(--white);
+    font-family: var(--content-font);
+    height: 2.5em;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 16pt;
+
+    width: 8em;
+}
+
+.nav-button,.feilds{
+    display: flex;
+    gap: 1em;
+}
+
+#query{
+    width: 25em;
+}
+#search{
+    width: 10em;
+    cursor: pointer;
+
+}
+.categories{
+    border-radius: 10px;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    border-bottom: 1px solid grey;
+    padding: 0.5em;
+}
+/* .categories:nth-child(4){
+    background-color: var(--white);
+    color: var(--primary);
+
+} */
+.categories button{
+    height: 2.5em;
+    width: auto;
+    /* border-radius: 0; */
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.products{
+
+    display: grid;
+    width: 90%;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 2em;
+    /* border: 1px solid black; */
+}
+
+.product-banner{
+    box-sizing: border-box;
+    padding: 10px;
+
+    display: flex;
+    border-radius: 10px;
+    text-align: center;
+    flex-direction: column;
+    
+    font-family: var(--content-font);
+    align-items: center;
+    width: 12em;
+    border: 1px solid var(--primary);
+}
+.product-banner p{
+    border-radius: 5px;
+
+    /* background-color: var(--primary); */
+/* padding: 0.4em; */
+color: var(--primary);
+height: 1em;
+}
+.product-banner name{
+    font-size: 14pt;
+    font-weight: bold;
+}
+.product-banner button{
+height: 1.5em;    
+}
