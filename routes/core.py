@@ -25,3 +25,8 @@ def root():
 @core.route("/product-view")
 def product():
     return render_template("product-view")
+
+@core.route("/logout")
+def logout():
+    session.clear()
+    return redirect('/')
