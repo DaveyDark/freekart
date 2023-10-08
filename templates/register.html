@@ -2,7 +2,7 @@
 
 {% block head %}
   <link rel="stylesheet" href="{{
-      url_for('static', filename = 'css/add.css')
+      url_for('static', filename = 'css/register.css')
   }}">
 {% endblock %}
 
@@ -11,7 +11,7 @@
 <button class="mx-auto" id="locationButton">Get Location</button>
 <div class="row">
 <form id="customerRegister" class="col-6 m-auto">
-  <h1>Customer</h1>
+  <h1>Sign Up As A Customer</h1>
   <input type="text" id="name" name="name" placeholder="Name"/>
   <input type="email" id="email" name="email" placeholder="Email Address"/>
   <input type="text" id="address" name="address" placeholder="Address"/>
@@ -23,7 +23,7 @@
   <input type="submit" id="submit" value="Register Customer"/>
 </form>
 <form id="sellerRegister" class="col-6 m-auto">
-  <h1>Seller</h1>
+  <h1>Sign Up As A Seller</h1>
   <input type="text" id="name" name="name" placeholder="Name"/>
   <input type="text" id="shop-name" name="shop_name" placeholder="Shop Name"/>
   <input type="email" id="email" name="email" placeholder="Email Address"/>
