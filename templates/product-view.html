@@ -11,7 +11,7 @@
             <div id="name">
                 {{product.name}}
             </div>
-            <div id = price>
+            <div id = "price">
                 <strike>MRP: ${{product.price}}</strike>
             </div>
             <div id = "d_price">
@@ -23,7 +23,7 @@
             <form id="orderForm" class="quantity-control">
                 <div class="num_input">
                 <div class="icon" id="decrease">&nbsp;&nbsp;-&nbsp;&nbsp;    </div>
-                <input hidden name="price" value="{{ product.effective_price }}" id="price">
+                <input hidden name="price" value="{{ product.effective_price }}" id="amount">
                 <input name="quantity" id="quantity">
                 <div class="icon" id="increase">&nbsp;+&nbsp;&nbsp;</div>
             </div>
@@ -67,15 +67,14 @@
 </script>
 <script>
 const form = document.getElementById('orderForm')
-const amount = document.getElementById('price')
+const amount = document.getElementById('amount')
 
 form.addEventListener('submit', e => {
   e.preventDefault()
   const body = new FormData(form)
-  const prod_id = parseInt(window.location.pathname.split('/').pop(), 10);
-  console.log(amount.value)
-  console.log(body.quantity)
-  body.append('amount', Number(amount.value) * Number(body.quantity))
+  const prod_id = parseInt(window.location.pathname.split('/').slice(-2, -1)[0], 10);
+  console.log(prod_id)
+  body.append('amount', Number(amount.value) * Number(body.get('quantity')))
   body.append('product_id', prod_id)
   console.log(body)
   fetch('/api/orders/add', {
