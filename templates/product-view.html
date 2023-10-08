@@ -73,9 +73,9 @@ form.addEventListener('submit', e => {
   e.preventDefault()
   const body = new FormData(form)
   const prod_id = parseInt(window.location.pathname.split('/').slice(-2, -1)[0], 10);
-  console.log(prod_id)
   body.append('amount', Number(amount.value) * Number(body.get('quantity')))
   body.append('product_id', prod_id)
+  alert('Thank you for buying')
   console.log(body)
   fetch('/api/orders/add', {
     method: "POST",
