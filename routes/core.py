@@ -1,5 +1,5 @@
 from flask import Blueprint , render_template , request
-from models import db, Product, Seller
+from models import Order, db, Product, Seller, Customer
 from datetime import datetime
 from flask import Blueprint, redirect , render_template, session, url_for
 from routes.api import Calc_effective_price
@@ -48,7 +48,11 @@ def dashboard():
     seller = auth_seller()
     if not seller:
         return redirect(url_for('core.root'))
-    return render_template("dashboard.html", seller=seller)
+    orders = Order.query.join(Product).filter(Product.seller_id == seller.id).all()
+    for order in orders:
+        order.product_name = Product.query.get(order.product_id).name
+        order.customer_name = Customer.query.get(order.customer_id).name
+    return render_template("dashboard.html", seller=seller, orders=orders)
 @core.route("/dashboard/add/")
 def add():
     return render_template("add.html")
@@ -60,6 +64,29 @@ def edit_product(id):
         return '',404
     product = Product.query.get(id)
     return render_template("edit.html", seller=seller, product=product)
+
+@core.route("/dashboard/accept/<int:id>")
+def accept_order(id):
+    seller = auth_seller()
+    if not seller:
+        return '',404
+    order = Order.query.get(id)
+    order.status = "Accepted"
+    db.session.add(order)
+    db.session.commit()
+    return redirect(url_for('core.dashboard'))
+
+@core.route("/dashboard/refuse/<int:id>")
+def refuse_order(id):
+    seller = auth_seller()
+    if not seller:
+        return '',404
+    order = Order.query.get(id)
+    order.status = "Refused"
+    db.session.add(order)
+    db.session.commit()
+    return redirect(url_for('core.dashboard'))
+
 
 @core.route("/dashboard/delete/<int:id>")
 def delete_product(id):

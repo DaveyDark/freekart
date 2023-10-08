@@ -76,6 +76,7 @@ def register_customer():
     db.session.add(new_customer)
     db.session.commit()
     session['user_id'] = new_customer.id
+    session['type'] = 'customer'
     return 'Customer Created', 201
 #Login for seller as well as customer
 @api.route('/login', methods=['POST'])
@@ -179,7 +180,8 @@ def add_order():
     if not required_keys.issubset(request.form.keys()):
         return 'Bad Request: Missing required fields', 400
     #Check if user is logged in 
-    if 'user_id' not in session or 'type' not in session or session['type'] != 'seller':
+    if 'user_id' not in session or 'type' not in session or session['type'] != 'customer':
+        print(session)
         return 'Unauthorized', 401
     #Add order to the database 
     order = Order(

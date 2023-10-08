@@ -57,22 +57,24 @@
             <th>Product Name</th>
             <th>Amount</th>
             <th>Order Time</th>
+            <th>Status</th>
             <th>Customer Name</th>
-            <th>Category</th>
             <th>Action</th>
         </tr>
         {% for order in orders %}
+        {% if order.status == "Pending" %}
         <tr>
-            <td>order.product.name</td>
-            <td>order.amount</td>
-            <td>order.timestamp</td>
-            <td>order.status</td>
-            <td>order.customer.name</td>
+            <td>{{order.product_name}}</td>
+            <td>{{order.amount}}</td>
+            <td>{{order.timestamp}}</td>
+            <td>{{order.status}}</td>
+            <td>{{order.customer_name}}</td>
             <td class="action-buttons">
-                <button class="accept-btn">Accept</button>
-                <button class="refuse-btn">Refuse</button>
+                <button onclick="window.location = '/dashboard/accept/' + {{order.id}}" class="accept-btn">Accept</button>
+                <button onclick="window.location = '/dashboard/refuse/' + {{order.id}}" class="refuse-btn">Refuse</button>
             </td>
         </tr>
+        {% endif %}
         {% endfor %}
     </table> 
           
@@ -87,40 +89,23 @@
             <table>
                 <tr>
                     <th>Product Name</th>
-                    <th>MRP</th>
-                    <th>Expiry</th>
-                    <th>Category</th>
-                    <th>Category</th>
-                    <th>Column 6</th>
+                    <th>Amount</th>
+                    <th>Order Time</th>
+                    <th>Status</th>
+                    <th>Customer Name</th>
                    
                 </tr>
+                {% for order in orders %}
+                {% if order.status != "Pending" %}
                 <tr>
-                    <td>Random</td>
-                    <td>Data</td>
-                    <td>123</td>
-                    <td>ABC</td>
-                    <td>Foo</td>
-                    <td>Bar</td>
-                   
+                    <td>{{order.product_name}}</td>
+                    <td>{{order.amount}}</td>
+                    <td>{{order.timestamp}}</td>
+                    <td>{{order.status}}</td>
+                    <td>{{order.customer_name}}</td>
                 </tr>
-                <tr>
-                    <td>456</td>
-                    <td>Test</td>
-                    <td>Random</td>
-                    <td>Data</td>
-                    <td>789</td>
-                    <td>ABC</td>
-                  
-                </tr>
-                <tr>
-                    <td>Bar</td>
-                    <td>Xyz</td>
-                    <td>456</td>
-                    <td>Test</td>
-                    <td>Random</td>
-                    <td>Data</td>
-                  
-                </tr>
+                {% endif %}
+                {% endfor %}
             </table> 
           
         </div>
