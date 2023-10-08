@@ -85,13 +85,15 @@ class Order(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
     amount = db.Column(db.Float, nullable=False)
     timestamp = db.Column(db.DateTime, nullable=False)
+    status = db.Column(db.String(25), nullable=False)
     customer_id = db.Column(db.Integer, db.ForeignKey('customers.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     #Constructor
-    def __init__(self, quantity, amount, timestamp, customer_id, product_id):
+    def __init__(self, quantity, amount, timestamp, status, customer_id, product_id):
         self.quantity = quantity
         self.amount = amount
         self.timestamp = timestamp
+        self.status = status
         self.customer_id = customer_id
         self.product_id = product_id
 

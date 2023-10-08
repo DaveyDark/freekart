@@ -150,6 +150,27 @@ def add_product():
     db.session.commit()
 
     return 'Product created', 201
+
+@api.route('/products/edit', methods=["POST"])
+def edit_product():
+    required_keys = {'id','name', 'quantity', 'price'}
+    if not required_keys.issubset(request.form.keys()):
+        return 'Bad Request: Missing required fields', 400
+    if 'user_id' not in session or 'type' not in session or session['type'] != 'seller':
+        return 'Unauthorized', 401
+
+    product = Product.query.get(request.form['id'])
+    if not product:
+        return '',404
+
+    product.name = request.form['name']
+    product.quantity = request.form['quantity']
+    product.price = request.form['price']
+
+    db.session.add(product)
+    db.session.commit()
+    return '',200
+
 #Customer can add order to the their cart
 @api.route('/orders/add', methods=["POST"])
 def add_order():
@@ -165,6 +186,7 @@ def add_order():
         quantity=request.form['quantity'],
         amount=request.form['amount'],
         timestamp=datetime.now(),
+        status="Pending",
         product_id=request.form['product_id'],
         customer_id=session['user_id']
     )
@@ -194,7 +216,7 @@ def Calc_effective_price(MRP, time):
     elif time == 2:
         price = MRP * 0.10  # 90% discount
     elif time == 1:
-        price = MRP * 0.9  # 91% discount
+        price = MRP * 0.09  # 91% discount
     else:
         price = MRP  
 

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="display">
+  <div class="heading">
+    Prices so cheap it feels like stealing
+  </div>
+  <div class="products">
+    {% for product in products %} 
+    
+    <div class="product-banner">
+      <p>{{product.days}} Days To Expire</p>
+      <img src="{{product.pic}}" height="120" width="200" 0alt="Product Image">
+      <name>{{ product.name }}</name>
+      <p><strike>MRP: {{product.price}}</strike><br>
+      Discounted Price: {{product.effective_price}}</p>
+      <br>
+      <button onclick="window.location = '/product-view/' + {{ product.id }}">
+        Buy Now
+      </button>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
