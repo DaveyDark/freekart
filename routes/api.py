@@ -186,6 +186,7 @@ def add_order():
         quantity=request.form['quantity'],
         amount=request.form['amount'],
         timestamp=datetime.now(),
+        status="Pending"
         product_id=request.form['product_id'],
         customer_id=session['user_id']
     )
