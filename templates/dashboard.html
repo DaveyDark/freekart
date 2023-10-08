@@ -70,8 +70,9 @@
             <td>{{order.status}}</td>
             <td>{{order.customer_name}}</td>
             <td class="action-buttons">
-                <button onclick="window.location = '/dashboard/accept/' + {{order.id}}" class="accept-btn">Accept</button>
-                <button onclick="window.location = '/dashboard/refuse/' + {{order.id}}" class="refuse-btn">Refuse</button>
+                <button onclick="window.location='/dashboard/accept/{{ order.id }}'" class="accept-btn">Accept</button>
+                <button onclick="window.location='/dashboard/refuse/{{ order.id }}'" class="refuse-btn">Refuse</button>
+
             </td>
         </tr>
         {% endif %}
