@@ -2,13 +2,15 @@ const form = document.getElementById('addForm')
 
 form.addEventListener('submit', e => {
   e.preventDefault()
-  console.log(new FormData(form))
-  fetch('/api/products/add', {
+  body = new FormData(form)
+  const prod_id = parseInt(window.location.pathname.split('/').pop(), 10);
+  body.append('id', prod_id)
+  fetch('/api/products/edit', {
     method: "POST",
-    body: new FormData(form),
+    body: body,
   }).then(res => {
     if(res.status == 200) {
-      window.location = '/'
+      window.location = '/dashboard'
     } else {
       console.log(`Error: Server returned ${res.status}`)
     }
