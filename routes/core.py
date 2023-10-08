@@ -30,7 +30,7 @@ def search():
     search_key = request.args["search_key"]
     products = db.session.query(Product).filter(Product.name.ilike(f"%{search_key}%")).all()
     print(products)
-    return render_template("search.html", product=products)
+    return render_template("search.html", products=products)
 
 @core.route("/product-view/<int:id>/")
 def product(id):
