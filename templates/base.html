@@ -27,7 +27,7 @@
           <button onclick="window.location='/register/'">Sign Up</button>
         {% else %}
           {% if session["type"]  == "seller" %}
-          <button onclick="window.location='/dashboard/'">Dashboard</button>  
+            <button onclick="window.location='/dashboard/'">Dashboard</button>  
           {% endif %}        
           <button onclick="window.location='/logout/'">Logout</button>
 
