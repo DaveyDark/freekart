@@ -159,7 +159,7 @@ def edit_product():
     if 'user_id' not in session or 'type' not in session or session['type'] != 'seller':
         return 'Unauthorized', 401
 
-    product = Product.query.get(id)
+    product = Product.query.get(request.form['id'])
     if not product:
         return '',404
 
