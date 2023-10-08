@@ -4,30 +4,31 @@
 {% endblock %}
 {% block content %}
 <product-view>
-        <image>
-            <img height="350" src={{product.pic}} alt="">
-        </image>
+        
+        <img width="500"  src={{product.pic}} alt="">
+        
         <prod-details>
-            <name>
+            <div id="name">
                 {{product.name}}
-            </name>
-            <price>
-                <strike>MRP: ${{product.price}}</strike>
-            </price>
-            <price>
-                Discounted Price: ${{product.effective_price}}
-            </price>
-            <expiry>
-                {{product.days}} Days To Expire
-            </expiry>
-            <div class="quantity-control">
-                <div class="icon" id="decrease">-  </div>
-                <input name="quantity" id="quantity">
-                <div class="icon" id="increase">+</div>
             </div>
-            <button>
-                Buy Now
-            </button>
+            <div id = price>
+                <strike>MRP: ${{product.price}}</strike>
+            </div>
+            <div id = "d_price">
+                Discounted Price: ${{product.effective_price}}
+            </div>
+            <div id = "expiry">
+                {{product.days}} Days To Expire
+            </div>
+            <form class="quantity-control">
+                <div class="num_input">
+                <div class="icon" id="decrease">&nbsp;&nbsp;-&nbsp;&nbsp;    </div>
+                <input name="quantity" id="quantity">
+                <div class="icon" id="increase">&nbsp;+&nbsp;&nbsp;</div>
+            </div>
+            <input type = "submit" value = "Buy Now">
+             
+            </input>
         </prod-details>
 
 </product-view>
