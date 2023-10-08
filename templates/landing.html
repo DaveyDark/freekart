@@ -138,3 +138,10 @@
   </div>
 </div>
 {% endblock %}
+
+{% block searchbar %}
+<form class="nav-button" action="/search">
+  <input type="text" id = "query" name="search_key">
+  <input type="submit" id = "search_key" value="🔎"> 
+</form>
+{% endblock %}
