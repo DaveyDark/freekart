@@ -1,4 +1,4 @@
-from flask import Blueprint , render_template
+from flask import Blueprint , render_template , request
 from models import db, Product, Seller
 from datetime import datetime
 from flask import Blueprint, redirect , render_template, session, url_for
@@ -24,6 +24,13 @@ def root():
         product.days = (product.expiry - datetime.now()).days
         product.effective_price = Calc_effective_price(product.price, product.days)
     return render_template("landing.html" , products=products)
+
+@core.route("/search/")
+def search():
+    search_key = request.args["search_key"]
+    products = db.session.query(Product).filter(Product.name.ilike(f"%{search_key}%")).all()
+    print(products)
+    return render_template("search.html", product=products)
 
 @core.route("/product-view/<int:id>/")
 def product(id):

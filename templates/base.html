@@ -19,9 +19,9 @@
         <img onclick = "window.location='/'" src="{{ url_for("static", filename = 'img/logo.png')}}" height="120" width="200">
       </div>
 
-      <form class="nav-button">
-        <input type="text" id = "query">
-        <input type="submit" id = "search" value = "Search"> 
+      <form class="nav-button" action="/search">
+        <input type="text" id = "query" name="search_key">
+        <input type="submit" id = "search_key" value="Search"> 
       </form>
       <div class="feilds">
         {% if not session["user_id"] %}
