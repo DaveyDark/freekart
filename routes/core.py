@@ -53,6 +53,16 @@ def dashboard():
         order.product_name = Product.query.get(order.product_id).name
         order.customer_name = Customer.query.get(order.customer_id).name
     return render_template("dashboard.html", seller=seller, orders=orders)
+
+@core.route("/profile/")
+def profile():
+    if 'user_id' not in session or 'type' not in session or session['type'] != 'customer':
+        return redirect(url_for('core.root'))
+    customer = Customer.query.get(session['user_id'])
+    orders = Order.query.filter_by(customer_id=session["user_id"]).all()
+    for order in orders:
+        order.product_name = Product.query.get(order.product_id).name
+    return render_template("profile.html", customer=customer, orders=orders)
 @core.route("/dashboard/add/")
 def add():
     return render_template("add.html")

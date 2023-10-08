@@ -29,6 +29,9 @@
           {% if session["type"]  == "seller" %}
             <button onclick="window.location='/dashboard/'">Dashboard</button>  
           {% endif %}        
+          {% if session["type"] == "customer" %}
+            <button onclick="window.location='/profile/'">Profile</button>
+          {% endif %}
           <button onclick="window.location='/logout/'">Logout</button>
 
         {% endif %}

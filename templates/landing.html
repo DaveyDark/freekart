@@ -6,11 +6,11 @@
 </div>
 <div class="display">
   <div class="heading">
-    Beverages
+    Grocery
   </div>
   <div class="products">
     {% for product in products %} 
-    
+      {% if product.category == "grocery" %}
     <div class="product-banner">
       <p>{{product.days}} Days To Expire</p>
       <img src="{{product.pic}}" height="120" style="max-width:90%" alt="Product Image">
@@ -18,10 +18,55 @@
       <p><strike>MRP: {{product.price}}</strike><br>
       Discounted Price: {{product.effective_price}}</p>
       <br>
-      <button onclick=" window.location = '/product-view/' + {{ product.id }}">
+      <button onclick="window.location='/product-view/{{ product.id }}'">
         Buy Now
       </button>
     </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+<div class="display">
+  <div class="heading">
+    Canned Goods
+  </div>
+  <div class="products">
+    {% for product in products %} 
+     {% if product.category == "canned" %}
+    <div class="product-banner">
+      <p>{{product.days}} Days To Expire</p>
+      <img src="{{product.pic}}" height="120" width="200"" alt="Product Image">
+      <name>{{ product.name }}</name>
+      <p><strike>MRP: {{product.price}}</strike><br>
+      Discounted Price: {{product.effective_price}}</p>
+      <br>
+      <button onclick="window.location='/product-view/{{ product.id }}'">
+        Buy Now
+      </button>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+<div class="display">
+  <div class="heading">
+    Cosmetics
+  </div>
+  <div class="products">
+    {% for product in products %} 
+    {% if product.category == "cosmetics" %}
+    <div class="product-banner">
+      <p>{{product.days}} Days To Expire</p>
+      <img src="{{product.pic}}" height="120" width="200"" alt="Product Image">
+      <name>{{ product.name }}</name>
+      <p><strike>MRP: {{product.price}}</strike><br>
+      Discounted Price: {{product.effective_price}}</p>
+      <br>
+      <button onclick="window.location='/product-view/{{ product.id }}'">
+        Buy Now
+      </button>
+    </div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>
@@ -31,7 +76,7 @@
   </div>
   <div class="products">
     {% for product in products %} 
-    
+    {% if product.category == "beverages" %}
     <div class="product-banner">
       <p>{{product.days}} Days To Expire</p>
       <img src="{{product.pic}}" height="120" width="200"" alt="Product Image">
@@ -39,20 +84,44 @@
       <p><strike>MRP: {{product.price}}</strike><br>
       Discounted Price: {{product.effective_price}}</p>
       <br>
-      <button onclick=" window.location = '/product-view/' + {{ product.id }}">
+      <button onclick="window.location='/product-view/{{ product.id }}'">
         Buy Now
       </button>
     </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<div class="display">
+  <div class="heading">
+    Medicines
+  </div>
+  <div class="products">
+    {% for product in products %} 
+    {% if product.category == "medicines" %}
+    <div class="product-banner">
+      <p>{{product.days}} Days To Expire</p>
+      <img src="{{product.pic}}" height="120" width="200"" alt="Product Image">
+      <name>{{ product.name }}</name>
+      <p><strike>MRP: {{product.price}}</strike><br>
+      Discounted Price: {{product.effective_price}}</p>
+      <br>
+      <button onclick="window.location='/product-view/{{ product.id }}'">
+        Buy Now
+      </button>
+    </div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>
 <div class="display">
   <div class="heading">
-    Beverages
+    Frozen Foods
   </div>
   <div class="products">
     {% for product in products %} 
-    
+    {% if product.category == "frozen" %}
     <div class="product-banner">
       <p>{{product.days}} Days To Expire</p>
       <img src="{{product.pic}}" height="120" width="200"" alt="Product Image">
@@ -60,31 +129,11 @@
       <p><strike>MRP: {{product.price}}</strike><br>
       Discounted Price: {{product.effective_price}}</p>
       <br>
-      <button onclick=" window.location = '/product-view/' + {{ product.id }}">
+      <button onclick="window.location='/product-view/{{ product.id }}'">
         Buy Now
       </button>
     </div>
-    {% endfor %}
-  </div>
-</div>
-<div class="display">
-  <div class="heading">
-    Beverages
-  </div>
-  <div class="products">
-    {% for product in products %} 
-    
-    <div class="product-banner">
-      <p>{{product.days}} Days To Expire</p>
-      <img src="{{product.pic}}" height="120" width="200"" alt="Product Image">
-      <name>{{ product.name }}</name>
-      <p><strike>MRP: {{product.price}}</strike><br>
-      Discounted Price: {{product.effective_price}}</p>
-      <br>
-      <button onclick=" window.location = '/product-view/' + {{ product.id }}">
-        Buy Now
-      </button>
-    </div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>
