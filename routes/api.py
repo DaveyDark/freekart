@@ -179,7 +179,7 @@ def add_order():
     if not required_keys.issubset(request.form.keys()):
         return 'Bad Request: Missing required fields', 400
     #Check if user is logged in 
-    if 'user_id' not in session or 'type' not in session or session['type'] != 'customer':
+    if 'user_id' not in session or 'type' not in session or session['type'] != 'seller':
         return 'Unauthorized', 401
     #Add order to the database 
     order = Order(

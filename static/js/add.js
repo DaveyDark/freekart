@@ -7,7 +7,7 @@ form.addEventListener('submit', e => {
     method: "POST",
     body: new FormData(form),
   }).then(res => {
-    if(res.status == 200) {
+    if(res.status == 201) {
       window.location = '/'
     } else {
       console.log(`Error: Server returned ${res.status}`)
