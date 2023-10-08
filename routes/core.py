@@ -22,7 +22,7 @@ def root():
 
     for product in products :
         product.days = (product.expiry - datetime.now()).days
-        product.effective_price = Calc_effective_price(product.price, product.days)
+        product.effective_price = Calc_effective_price(product.price, product.days, product.category)
     return render_template("landing.html" , products=products)
 
 @core.route("/search/")
@@ -36,7 +36,7 @@ def search():
 def product(id):
     product = db.session.query(Product).filter_by(id=id).first()
     product.days = (product.expiry - datetime.now()).days
-    product.effective_price = Calc_effective_price(product.price, product.days)
+    product.effective_price = Calc_effective_price(product.price, product.days,product.category)
     return render_template("product-view.html" , product=product)
 
 @core.route("/logout/")

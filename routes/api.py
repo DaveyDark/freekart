@@ -1,3 +1,5 @@
+from model.model import findClearance as fc
+
 from datetime import datetime
 from flask import Blueprint, request, session
 from sqlalchemy import or_
@@ -198,28 +200,13 @@ def add_order():
 
     return 'Order Created', 201
 
-def Calc_effective_price(MRP, time):
-    if time > 21:
-        price = MRP * 0.90  # 10% discount
-    elif time > 14:
-        price = MRP * 0.75  # 25% discount
-    elif time > 7:
-        price = MRP * 0.50  # 50% discount
-    elif time == 7:
-        price = MRP * 0.25  # 25% discount
-    elif time == 6:
-        price = MRP * 0.20  # 80% discount
-    elif time == 5:
-        price = MRP * 0.16  # 84% discount
-    elif time == 4:
-        price = MRP * 0.13  # 87% discount
-    elif time == 3:
-        price = MRP * 0.11  # 89% discount
-    elif time == 2:
-        price = MRP * 0.10  # 90% discount
-    elif time == 1:
-        price = MRP * 0.09  # 91% discount
-    else:
-        price = MRP  
-
-    return round(price,2)
+def Calc_effective_price(MRP, time, cat):
+    category = {
+    'canned' : 1,
+    'medicines' : 2,
+    'cosmetics' : 3,
+    'beverages' : 4,
+    'grocery' : 5,
+    'frozen' : 5
+}
+    return fc( time , MRP, category[cat] )
